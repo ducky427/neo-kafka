@@ -17,13 +17,13 @@ The key of a message to the node topic is a long which represents the Neo4j node
 A sample message value for a message sent to the node topic looks like:
 
 ```
-{:datetime 1436022479993, :created true, :deleted nil, :new-lbls ["Country"], :del-lbls nil, :new-props {"name" "Belgium"}, :del-props nil}
+{:timestamp 1436022479993, :created true, :deleted nil, :new-lbls ["Country"], :del-lbls nil, :new-props {"name" "Belgium"}, :del-props nil}
 ```
 
 A sample message value for a message sent to the edge topic looks like:
 
 ```
-{:datetime 1436035131528, :created true, :deleted nil, :from 205, :to 253, :name "LIVES_IN", :new-props nil, :del-props nil}
+{:timestamp 1436035131528, :created true, :deleted nil, :from 205, :to 253, :name "LIVES_IN", :new-props nil, :del-props nil}
 ```
 
 ## Other commands

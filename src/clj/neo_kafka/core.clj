@@ -8,7 +8,7 @@
   (avro/parse-schema
    {:type :record
     :name "NeoNodeDiff"
-    :fields [{:name "datetime" :type :long}
+    :fields [{:name "timestamp" :type :long}
              {:name "created" :type [:boolean :null]}
              {:name "deleted" :type [:boolean :null]}
              {:name "new-lbls" :type [:null {:type :array :items :string}]}
@@ -20,7 +20,7 @@
   (avro/parse-schema
    {:type :record
     :name "NeoEdgeDiff"
-    :fields [{:name "datetime" :type :long}
+    :fields [{:name "timestamp" :type :long}
              {:name "created" :type [:boolean :null]}
              {:name "deleted" :type [:boolean :null]}
              {:name "from" :type [:long :null]}
@@ -100,7 +100,7 @@
         res   (merge res (make-nodes (.deletedNodes td) {} :deleted))]
     (doseq [[k v]  res
             :let   [p (ProducerRecord. topic (str k) (avro/binary-encoded node-schema
-                                                                          (assoc v :datetime current-time)))]]
+                                                                          (assoc v :timestamp current-time)))]]
       (.send producer p))))
 
 (defn rel-id-fn
@@ -123,7 +123,7 @@
     (doseq [[[k from-id to-id rel-name] v]  res
             :let [p  (ProducerRecord. topic (str k) (avro/binary-encoded edge-schema
                                                                             (assoc v
-                                                                                   :datetime current-time
+                                                                                   :timestamp current-time
                                                                                    :from from-id
                                                                                    :to to-id
                                                                                    :name rel-name)))]]
